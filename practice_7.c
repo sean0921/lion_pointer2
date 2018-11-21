@@ -1,10 +1,24 @@
 #include<stdio.h>
-#include<string.h>
+int add(int a,int b){return a+b;}
+int minus(int a,int b){return a-b;}
 
+int multiply(int a,int b){
+	return a*b;
+}
+int divide(int a,int b){
+	return a/b;
+}
+
+int nothing(int a,int b){return 0;}
 int main(){
-    int a[5]={1,2,3,4,5},b[3];
-    memcpy(b,a,sizeof(b));
-    for(int i=0;i<3;++i) printf("%d ",b[i]);
-    printf("\n");
+    int a=5,b=10;
+    int (*operation)(int,int)=nothing;
+    switch(getchar()){
+        case '+': operation=add;   break;
+        case '-': operation=minus; break;
+        case '*': operation=multiply; break;
+        case '/': operation=divide; break;
+    }
+    printf("%d",operation(a,b));
     return 0;
 }
